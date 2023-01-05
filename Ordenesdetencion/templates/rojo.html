@@ -1,0 +1,124 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block title %} Órden de detención {% endblock %}
+
+
+{% block contenido %}
+
+<!doctype html>
+<html lang="en">
+  <body>
+      
+    <div class="jumbotron jumbotron-fluid fondo-rojo">
+      <div class="container responsive">
+        <center>
+        <h3 class="display-3 title-busqueda-blanco">ÓRDENES DE DETENCIONES VIGENTES</h3>
+        <img src="{% static 'img/alerta-blanca.png' %}" class="img-fluid alerta-blanca">
+      </center>
+      </div>
+    </div>
+    <div class="container-fluid contenedor-superior col-xs-6 col-sm-6 col-md-12">
+      <div class="row">
+        <div class="col-2">          
+        </div>
+        <div class="col-10">
+          {% block persona %}
+          <div class="row"><p class="h4">RUN: {{ persona.gls_rut }}</p></div>
+          <div class="row"><p class="h4">NOMBRE: {{ persona.gls_nombres }} {{ persona.gls_apellido_paterno }} {{ persona.gls_apellido_materno }}</p></div>
+          
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="container">
+            
+            <div class="table-responsive-sm">         
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Fecha Nacimiento</th>
+                  <th>Dirección</th>
+                  <th>Comuna</th>
+                  <th>Pais</th>
+                  <th>Actividad</th>
+                  <th>Estado Civil</th>
+                  <th>Genero</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <td>{{ persona.fec_fecha_nacimiento}}</td>
+                  <td>{{ persona.gls_calle}} {{ persona.gls_numero_direccion}} {{ persona.gls_depto}}</td>
+                  <td>{{ persona.comuna_id_comuna}}</td>
+                  <td>{{ persona.pais_id_pais}}</td>
+                  <td>{{ persona.actividad_id_actividad}}</td>
+                  <td>{{ persona.estado_civil_id_estado_civil}}</td>
+                  <td>{{ persona.sexo_id_sexo}}</td>
+                </tr>
+                {% endblock %}
+             
+              </tbody>
+            </table>
+          </div>  
+          </div>
+        </div>
+        
+        </div>
+      </div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="msg-alerta p-2"><center><h2> ATENCIÓN </h2></center></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header border-bottom">
+            <p class="h6">ORDENES DE APREHENSIÓN: </p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive-sm">
+              <table class="table text-sm mb-0 table-striped">
+                <thead>
+                  <tr>
+                    <th>N°</th>
+                    <th>Fecha</th>
+                    <th>RUC</th>
+                    <th>Delito</th>
+                    <th>Tribunal</th>
+                    <th>Resolucion</th>
+                  </tr>
+                </thead>
+                {% for orden in orden %}
+                <tbody>
+                  <tr>
+                    <th scope="row">{{orden.id_orden}}</th>
+                    <td>{{orden.fecha_orden}}</td>
+                    <td>{{orden.ruc}}</td>
+                    <td>{{orden.delito_id_delito}}</td>
+                    <td>{{orden.tribunal_id_tribunal}}</td>
+                    <td><a class="btn btn-light" download="{{ orden.ruc }}" href="data:application/pdf;base64,{{orden.resolucion}}" title="Descargar PDF"><i class="bi bi-file-pdf"></a></td>
+                    <td></td>
+                  </tr>    
+                </tbody>
+                {% endfor %}
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <link rel="stylesheet" href="/static/css/estilos.css">
+  </body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %} Sin Antecedentes {% endblock %}
+
+
+
+{% block contenido %}
+
+
+<div class="jumbotron jumbotron-fluid fondo-verde">
+  <div class="container">
+    <center>
+    <h3 class="display-3 title-busqueda-blanco">Sin Antecededentes</h3>
+    <img  src="{% static 'img/check_blanco.png' %}" class="img-fluid alerta-blanca">
+  </center>
+  </div>
+</div>
+
+<div class="jumbotron contenedor-msg">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 texto">
+        <p class="lead font-weight-bold  text-secondary">La persona no ha sido condenada/imputada o no presenta antecedentes judiciales en Órdenes de Detención y/o Medidas Cautelares.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="respuesta-ok pt-0">
+<div class="container-fluid h-100"> 
+  <div class="row w-100 align-items-center">
+    <div class="col text-center">
+      <a class="btn btn-secondary btn-lg" href="./" role="button">Volver al buscador</a>
+    </div>	
+  </div>
+</div>
+<br>
+
+
+{% endblock %}
